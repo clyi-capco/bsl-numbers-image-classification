@@ -7,9 +7,9 @@ async function main() {
     const resultElement = document.querySelector("#sign-result");
     const debugElement = document.querySelector("#debug");
 
-    const knownGestures = numberGestures;
+    bslNumberGestures = [SIGN_1, SIGN_2, SIGN_3, SIGN_4, SIGN_5];
 
-    const GE = new fp.GestureEstimator(knownGestures);
+    const GE = new fp.GestureEstimator(bslNumberGestures);
 
     const handpose = handPoseDetection.SupportedModels.MediaPipeHands;
     const hpConfig = {
@@ -22,6 +22,8 @@ async function main() {
     const estimateHands = async () => {
 
         const predictions = await model.estimateHands(videoElement, true);
+
+        //if(predictions.length > 0) { console.log(predictions) };
 
         let signsFound = [];
 
